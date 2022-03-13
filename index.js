@@ -50,14 +50,9 @@ class LinkedList {
   insert(index, value){
     //Check for proper parameters;
     if(index >= this.length) {
-      console.log('yes')
       return this.append(value);
-    }
-    
-    const newNode = {
-      value: value,
-      next: null
-    }
+    }    
+    const newNode = new Node(value);
     const leader = this.traverseToIndex(index-1);
     const holdingPointer = leader.next;
     leader.next = newNode;
@@ -65,6 +60,19 @@ class LinkedList {
     this.length++;
     return this.printList();
   }
+
+  remove(index){
+    //Check for proper parameters;
+    if(index >= this.length) {
+      return printList();
+    }
+    const previousNode=this.traverseToIndex(index-1);
+    const unwantedNode=previousNode.next;
+    previousNode.next=unwantedNode.next;
+    this.length--;
+    return this.printList();
+  }
+  
   traverseToIndex(index) {
     //Check parameters
     let counter = 0;
@@ -90,5 +98,8 @@ myLinkedList.append(16);
 myLinkedList.prepend(1);
 myLinkedList.insert(2, 99);
 myLinkedList.insert(20, 88);
+console.log(myLinkedList.printList());
+console.log (myLinkedList);
+myLinkedList.remove(2);
 console.log(myLinkedList.printList());
 console.log (myLinkedList);
